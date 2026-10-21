@@ -47,45 +47,79 @@ import { useState, useEffect } from "react";
 //   setGift(gifts[randomIndex]);
 // };
 
-function App() {
-  const [job, setJob] = useState("");
-  const [jobs, setJobs] = useState(() => {
-    const storedJobs = localStorage.getItem("jobs");
-    return storedJobs ? JSON.parse(storedJobs) : [];
-  });
+// function App() {
+//   const [avatar, setAvatar] = useState();
 
-  useEffect(() => {
-    const storedJobs = localStorage.getItem("jobs");
-    if (storedJobs) {
-      setJobs(JSON.parse(storedJobs));
-    }
-  }, []);
+//   useEffect(() => {
+//     return () => {
+//       if (avatar) {
+//         avatar && URL.revokeObjectURL(avatar.preview);
+//       }
+//     };
+//   }, [avatar]);
 
-  function handleAddJob() {
-    if (job.trim() !== "") {
-      const updatedJobs = [...jobs, job];
-      setJobs(updatedJobs);
-      localStorage.setItem("jobs", JSON.stringify(updatedJobs));
-      setJob("");
-    }
-  }
+//   const handlePreviewAvatar = (e) => {
+//     const file = e.target.files[0];
+//     file.preview = URL.createObjectURL(file);
+//     setAvatar(file);
+//   };
 
-  return (
-    <div className="App" style={{ padding: 50 }}>
-      <h1>ReactJS TikTok</h1>
-      <input
-        value={job}
-        onChange={(e) => setJob(e.target.value)}
-        placeholder="Nhập công việc"
-      />
-      <button onClick={handleAddJob}>Thêm</button>
-      <ul>
-        {jobs.map((job, index) => (
-          <li key={index}>{job}</li>
-        ))}
-      </ul>
-    </div>
-  );
-}
+//   return (
+//     <div>
+//       <input type="file" onChange={(e) => handlePreviewAvatar(e)} />
+//       {avatar && <img src={avatar.preview} alt="" width="200" height="200" />}
+//     </div>
+//   );
+// }
 
-export default App;
+// export default App;
+
+// const lessons = [
+//   {
+//     id: 1,
+//     name: "Bài 1: Giới thiệu React",
+//   },
+//   {
+//     id: 2,
+//     name: "Bài 2: JSX và Component",
+//   },
+//   {
+//     id: 3,
+//     name: "Bài 3: Props và State",
+//   },
+// ];
+
+// function Content() {
+//   const [lessonId, setLessonId] = useState(1);
+
+//   useEffect(() => {
+//     window.addEventListener(`lesson-${lessonId}`, handleComment);
+
+//     return () => {
+//       window.removeEventListener(`lesson-${lessonId}`, handleComment);
+//     };
+//   }, [lessonId]);
+
+//   function handleComment({ detail }) {
+//     console.log(detail);
+//   }
+
+//   return (
+//     <div>
+//       <ul>
+//         {lessons.map((lesson) => (
+//           <li key={lesson.id}>
+//             <button onClick={() => setLessonId(lesson.id)}>
+//               Thoat chọn {lesson.name}
+//             </button>
+//             <button onClick={() => setLessonId(lesson.id)}>
+//               {lesson.name}
+//             </button>
+//           </li>
+//         ))}
+//       </ul>
+//     </div>
+//   );
+// }
+
+// export default Content;

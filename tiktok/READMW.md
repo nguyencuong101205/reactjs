@@ -42,3 +42,8 @@
 
     - Scroll
     - Resize
+
+# React.memo HOC
+
+- memo() -> highter order Component(HOC)
+- useCallback()
