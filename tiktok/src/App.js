@@ -74,52 +74,55 @@ import { useState, useEffect } from "react";
 
 // export default App;
 
-// const lessons = [
-//   {
-//     id: 1,
-//     name: "Bài 1: Giới thiệu React",
-//   },
-//   {
-//     id: 2,
-//     name: "Bài 2: JSX và Component",
-//   },
-//   {
-//     id: 3,
-//     name: "Bài 3: Props và State",
-//   },
-// ];
+const lessons = [
+  {
+    id: 1,
+    name: "Bài 1: Giới thiệu React",
+  },
+  {
+    id: 2,
+    name: "Bài 2: JSX và Component",
+  },
+  {
+    id: 3,
+    name: "Bài 3: Props và State",
+  },
+];
 
-// function Content() {
-//   const [lessonId, setLessonId] = useState(1);
+function Content() {
+  const [lessonId, setLessonId] = useState(1);
 
-//   useEffect(() => {
-//     window.addEventListener(`lesson-${lessonId}`, handleComment);
+  useEffect(() => {
+    window.addEventListener(`lesson-${lessonId}`, handleComment);
 
-//     return () => {
-//       window.removeEventListener(`lesson-${lessonId}`, handleComment);
-//     };
-//   }, [lessonId]);
+    return () => {
+      window.removeEventListener(`lesson-${lessonId}`, handleComment);
+    };
+  }, [lessonId]);
 
-//   function handleComment({ detail }) {
-//     console.log(detail);
-//   }
+  function handleComment({ detail }) {
+    console.log(detail);
+  }
 
-//   return (
-//     <div>
-//       <ul>
-//         {lessons.map((lesson) => (
-//           <li key={lesson.id}>
-//             <button onClick={() => setLessonId(lesson.id)}>
-//               Thoat chọn {lesson.name}
-//             </button>
-//             <button onClick={() => setLessonId(lesson.id)}>
-//               {lesson.name}
-//             </button>
-//           </li>
-//         ))}
-//       </ul>
-//     </div>
-//   );
-// }
+  return (
+    <div style={{ padding: 30 }}>
+      <ul>
+        {lessons.map((lesson) => (
+          <li key={lesson.id} style={{ marginBottom: 10 }}>
+            <button
+              style={{
+                color: lessonId === lesson.id ? "red" : "#333",
+                cursor: "pointer",
+              }}
+              onClick={() => setLessonId(lesson.id)}
+            >
+              {lesson.name}
+            </button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
 
-// export default Content;
+export default Content;
