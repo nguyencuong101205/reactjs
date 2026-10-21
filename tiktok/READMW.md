@@ -30,4 +30,15 @@
 
 # 2. useEffect(callbacl, [])
 
+<!-- Chỉ gọi callback 1 lần sau khi component mounted -->
+
 # 3. useEffect(callback, [deps])
+
+<!-- Callback sẽ được gọi lại mỗi khi deps thay  -->
+
+<!--  -->
+
+# Listen DOM events
+
+    - Scroll
+    - Resize

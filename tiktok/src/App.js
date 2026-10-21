@@ -1,5 +1,4 @@
-// import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 
 // const order = [100, 200, 300, 400, 500];
 
@@ -15,12 +14,6 @@ import { useEffect } from "react";
 //   "Ổ cứng di động",
 //   "USB 128GB",
 // ];
-
-// const [job, setJob] = useState("");
-// const [jobs, setJobs] = useState(() => {
-//   const storedJobs = localStorage.getItem("jobs");
-//   return storedJobs ? JSON.parse(storedJobs) : [];
-// });
 
 // function App() {
 // const [count, setCount] = useState(() => {
@@ -44,7 +37,7 @@ import { useEffect } from "react";
 // const handleClick = () => {
 //   setCount(count + 1);
 //   setCount(count + 1);
-//   setCount(count + 1);
+//   setCount(count + 12);
 // };
 
 // const [gift, setGift] = useState(null);
@@ -55,40 +48,44 @@ import { useEffect } from "react";
 // };
 
 function App() {
+  const [job, setJob] = useState("");
+  const [jobs, setJobs] = useState(() => {
+    const storedJobs = localStorage.getItem("jobs");
+    return storedJobs ? JSON.parse(storedJobs) : [];
+  });
+
   useEffect(() => {
     const storedJobs = localStorage.getItem("jobs");
     if (storedJobs) {
       setJobs(JSON.parse(storedJobs));
     }
   }, []);
+
+  function handleAddJob() {
+    if (job.trim() !== "") {
+      const updatedJobs = [...jobs, job];
+      setJobs(updatedJobs);
+      localStorage.setItem("jobs", JSON.stringify(updatedJobs));
+      setJob("");
+    }
+  }
+
+  return (
+    <div className="App" style={{ padding: 50 }}>
+      <h1>ReactJS TikTok</h1>
+      <input
+        value={job}
+        onChange={(e) => setJob(e.target.value)}
+        placeholder="Nhập công việc"
+      />
+      <button onClick={handleAddJob}>Thêm</button>
+      <ul>
+        {jobs.map((job, index) => (
+          <li key={index}>{job}</li>
+        ))}
+      </ul>
+    </div>
+  );
 }
 
-return () => (
-  // <div style={{ textAlign: "center", paddingTop: "20px" }}>
-  //   <p>{gift || "Chọn một phần thưởng"}</p>
-  //   <button onClick={handleClick}>Chọn phần thưởng</button>
-  // </div>
-
-  // <div className="App" style={{ textAlign: "center" }}>
-  //   {/* <h1>{count}</h1>
-  //   <button onClick={handleClick0}>Click me (0)</button>
-  //   <button onClick={handleClick}>Click me</button> */}
-  // </div>
-
-  // <div style={{ padding: 50 }}>
-  //   <input
-  //     value={job}
-  //     onChange={(e) => setJob(e.target.value)}
-  //     placeholder="Nhập công việc"
-  //   >
-  //     <button onClick={() => setJobs([...jobs, job])}>Thêm</button>
-  //   </input>
-  //   <ul>
-  //     {jobs.map((job, index) => (
-  //       <li key={index}>{job}</li>
-  //     ))}
-  //   </ul>
-  // </div>
-  <div>Heloo Bear</div>
-);
 export default App;
